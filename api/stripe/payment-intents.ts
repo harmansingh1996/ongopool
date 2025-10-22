@@ -1,6 +1,6 @@
 import type { Request, Response, Router } from 'express';
 import Stripe from 'stripe';
-import { stripe } from './stripeClient.js';
+import { stripe } from './stripeClient';
 
 // Request interfaces
 export interface CreatePaymentIntentRequest {

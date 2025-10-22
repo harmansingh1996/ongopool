@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 import { Router } from 'express';
 import Stripe from 'stripe';
-import { stripe } from './stripeClient';
+import { stripe } from './stripeClient.js';
 
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
