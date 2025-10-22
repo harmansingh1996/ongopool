@@ -1,8 +1,8 @@
 import type { Request, Response } from 'express';
 import { Router } from 'express';
-import { registerPaymentIntentRoutes } from './payment-intents';
-import { registerCustomerRoutes } from './customer-management';
-import { stripeWebhooksRouter } from './webhooks';
+import { registerPaymentIntentRoutes } from './payment-intents.js';
+import { registerCustomerRoutes } from './customer-management.js';
+import { stripeWebhooksRouter } from './webhooks.js';
 
 export function createStripeRouter() {
   const router = Router();
