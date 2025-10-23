@@ -1,4 +1,4 @@
-import { stripe } from './stripeClient';
+import { stripe } from './stripeClient.js';
 export async function createCustomer(request) {
     try {
         if (!request.email || !request.user_id) {

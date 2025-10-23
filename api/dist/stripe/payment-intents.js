@@ -1,4 +1,4 @@
-import { stripe } from './stripeClient';
+import { stripe } from './stripeClient.js';
 /**
  * Create Payment Intent for Authorization Hold
  */

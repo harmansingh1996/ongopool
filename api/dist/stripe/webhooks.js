@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { stripe } from './stripeClient';
+import { stripe } from './stripeClient.js';
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 if (!endpointSecret) {
     throw new Error('STRIPE_WEBHOOK_SECRET environment variable is not set.');
