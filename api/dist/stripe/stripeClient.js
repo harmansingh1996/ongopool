@@ -4,5 +4,5 @@ if (!secretKey) {
     throw new Error('STRIPE_SECRET_KEY environment variable is not set.');
 }
 export const stripe = new Stripe(secretKey, {
-    apiVersion: '2025-08-27.basil',
+    apiVersion: '2024-06-20',
 });

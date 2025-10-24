@@ -29,6 +29,7 @@ export async function createPaymentIntent(request) {
             },
             automatic_payment_methods: {
                 enabled: true,
+                allow_redirects: 'never'
             },
         };
         if (request.payment_method_id) {
