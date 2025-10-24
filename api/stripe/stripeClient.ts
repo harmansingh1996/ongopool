@@ -7,5 +7,6 @@ if (!secretKey) {
 }
 
 export const stripe = new Stripe(secretKey, {
-  apiVersion: "2025-09-30.clover",
+  apiVersion: "2025-09-30.clover", // match the Stripe 19.x type
 });
+
