@@ -76,7 +76,23 @@ async function getOrCreateStripeConnectAccount(userId: string): Promise<string> 
 
   // If account already exists, return it
   if (user.stripe_connect_account_id) {
-    return user.stripe_connect_account_id;
+    try {
+      const existingAccount = await stripe.accounts.retrieve(user.stripe_connect_account_id);
+
+      if (existingAccount.business_type !== 'individual') {
+        await stripe.accounts.update(user.stripe_connect_account_id, {
+          business_type: 'individual',
+        });
+      }
+
+      return user.stripe_connect_account_id;
+    } catch (stripeError: any) {
+      console.warn(
+        `Warning: Failed to retrieve existing Stripe account ${user.stripe_connect_account_id}, creating a new one instead:`,
+        stripeError.message
+      );
+      // fall through to create a new account below
+    }
   }
 
   // Create a new Stripe Connect account for this user
@@ -87,6 +103,10 @@ async function getOrCreateStripeConnectAccount(userId: string): Promise<string> 
       email: `user-${userId}@ongopoolconnect.local`,
       country: 'CA', // Assuming Canada for now
       business_type: 'individual',
+      capabilities: {
+        transfers: { requested: true },
+        card_payments: { requested: true },
+      },
       metadata: {
         user_id: userId,
         app: 'OnGoPool',
